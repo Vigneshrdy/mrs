@@ -2,15 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { MoveRight, PhoneCall } from 'lucide-react'
+import { MoveRight, PhoneCall } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0)
-  const titles = useMemo(
-    () => ["Data Scientist", "Backend Developer", "Open Source Contributor", "Problem Solver"],
-    []
-  )
+  const titles = useMemo(() => ["Data Scientist", "Backend Developer", "Open Source Contributor", "Problem Solver"], [])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -34,7 +31,7 @@ function Hero() {
           </div>
           <div className="flex gap-4 flex-col">
             <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-regular">
-              <span className="text-foreground">Hi, I'm Manthan Singh</span>
+              <span className="text-foreground">Hi, I'm Manthan Raj Singh</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
@@ -61,17 +58,23 @@ function Hero() {
               </span>
             </h1>
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-3xl text-center">
-              I'm a Data Science student passionate about building user-centered solutions with modern web technologies.
-              My focus areas include backend services, clean architecture, and intuitive frontends. I enjoy hackathons,
-              mentoring peers, and contributing to open-source while valuing clarity, collaboration, and shipping quality work.
+              I'm a <strong>Data Science student at IIT Madras</strong> from <strong>Mumbai</strong>, passionate about
+              building user-centered solutions with modern web technologies. My focus areas include{" "}
+              <em>backend services</em>, <em>machine learning</em>, <em>clean architecture</em>, and{" "}
+              <em>intuitive frontends</em>. I enjoy hackathons, mentoring peers, and contributing to open-source while
+              valuing clarity, collaboration, and shipping quality work.
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline">
-              Get in touch <PhoneCall className="w-4 h-4" />
+            <Button size="lg" className="gap-4 bg-transparent" variant="outline" asChild>
+              <a href="#contact" aria-label="Get in touch with Manthan Raj Singh">
+                Get in touch <PhoneCall className="w-4 h-4" />
+              </a>
             </Button>
-            <Button size="lg" className="gap-4">
-              View my work <MoveRight className="w-4 h-4" />
+            <Button size="lg" className="gap-4" asChild>
+              <a href="#projects" aria-label="View Manthan's projects and work">
+                View my work <MoveRight className="w-4 h-4" />
+              </a>
             </Button>
           </div>
         </div>

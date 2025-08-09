@@ -4,12 +4,17 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { trackContactForm, trackEvent } from "@/lib/analytics"
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
   async function onSubmit(formData: FormData) {
     setStatus("loading")
+
+    // Track form submission attempt
+    trackEvent("form_start", "contact", "contact_form")
+
     try {
       const payload = Object.fromEntries(formData.entries())
       const res = await fetch("/api/contact", {
@@ -17,10 +22,19 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       })
+
       if (!res.ok) throw new Error("Request failed")
+
       setStatus("success")
+
+      // Track successful form submission
+      trackContactForm("form")
+      trackEvent("form_submit", "contact", "success")
     } catch (e) {
       setStatus("error")
+
+      // Track form submission error
+      trackEvent("form_submit", "contact", "error")
     }
   }
 
@@ -30,19 +44,39 @@ export default function ContactForm() {
         <label htmlFor="name" className="text-sm font-medium">
           Name
         </label>
-        <Input id="name" name="name" placeholder="Your name" required />
+        <Input
+          id="name"
+          name="name"
+          placeholder="Your name"
+          required
+          onFocus={() => trackEvent("form_field_focus", "contact", "name")}
+        />
       </div>
       <div className="grid gap-2">
         <label htmlFor="email" className="text-sm font-medium">
           Email
         </label>
-        <Input id="email" name="email" type="email" placeholder="you@example.com" required />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+          onFocus={() => trackEvent("form_field_focus", "contact", "email")}
+        />
       </div>
       <div className="grid gap-2">
         <label htmlFor="message" className="text-sm font-medium">
           Message
         </label>
-        <Textarea id="message" name="message" placeholder="Tell me about your project..." rows={5} required />
+        <Textarea
+          id="message"
+          name="message"
+          placeholder="Tell me about your project..."
+          rows={5}
+          required
+          onFocus={() => trackEvent("form_field_focus", "contact", "message")}
+        />
       </div>
       <div className="flex items-center gap-3 pt-1">
         <Button

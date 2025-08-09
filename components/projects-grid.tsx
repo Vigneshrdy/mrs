@@ -5,33 +5,36 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import FadeIn from "@/components/fade-in"
-import { ExternalLink, Github } from 'lucide-react'
+import { ExternalLink, Github } from "lucide-react"
+import { trackProjectClick, trackExternalLink } from "@/lib/analytics"
 
 const items = [
   {
     title: "Weather Forecast App",
-    desc:
-      "Location-based weather updates with geolocation and responsive UI.",
+    desc: "Location-based weather updates with geolocation and responsive UI.",
     href: "#",
     repo: "#",
   },
   {
     title: "Notes Summarize App",
-    desc:
-      "Automatic notes summarization using AI with a clean Flutter/JS stack.",
+    desc: "Automatic notes summarization using AI with a clean Flutter/JS stack.",
     href: "#",
     repo: "#",
   },
   {
     title: "PDF Summary & Analyzer",
-    desc:
-      "Batch PDF analysis and auto-sorting with summary export.",
+    desc: "Batch PDF analysis and auto-sorting with summary export.",
     href: "#",
     repo: "#",
   },
 ]
 
 export default function ProjectsGrid() {
+  const handleProjectClick = (project: string, type: "live" | "code", url: string) => {
+    trackProjectClick(project, type)
+    trackExternalLink(url, "project")
+  }
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((p, i) => (
@@ -41,7 +44,7 @@ export default function ProjectsGrid() {
               <div className="relative w-full h-44 overflow-hidden rounded-t-lg">
                 <Image
                   src={`/placeholder.svg?height=320&width=640&query=${encodeURIComponent(
-                    p.title + " project cover neutral"
+                    p.title + " project cover neutral",
                   )}`}
                   alt={`${p.title} cover`}
                   fill
@@ -56,13 +59,23 @@ export default function ProjectsGrid() {
             </CardContent>
             <CardFooter className="mt-auto flex gap-2">
               <Link href={p.href}>
-                <Button size="sm" variant="outline" className="gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="gap-2 bg-transparent"
+                  onClick={() => handleProjectClick(p.title, "live", p.href)}
+                >
                   <ExternalLink className="h-4 w-4" />
                   Live
                 </Button>
               </Link>
               <Link href={p.repo}>
-                <Button size="sm" variant="ghost" className="gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="gap-2"
+                  onClick={() => handleProjectClick(p.title, "code", p.repo)}
+                >
                   <Github className="h-4 w-4" />
                   Code
                 </Button>
