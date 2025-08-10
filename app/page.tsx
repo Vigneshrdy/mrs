@@ -47,14 +47,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://manthansingh.dev",
+    url: "https://manthan.vigneshreddy.tech",
     title: "Manthan Raj Singh - Data Science Student | IIT Madras",
     description:
       "Data Science student at IIT Madras from Mumbai. Passionate about AI/ML, backend development, and building impactful solutions.",
     siteName: "Manthan Raj Singh Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://manthan.vigneshreddy.tech/og-image.png",
         width: 1200,
         height: 630,
         alt: "Manthan Raj Singh - Data Science Student at IIT Madras",
@@ -66,11 +66,11 @@ export const metadata: Metadata = {
     title: "Manthan Raj Singh - Data Science Student | IIT Madras",
     description:
       "Data Science student at IIT Madras from Mumbai. Building AI/ML projects and contributing to open source.",
-    images: ["/og-image.png"],
+    images: ["https://manthan.vigneshreddy.tech/og-image.png"],
     creator: "@manthansingh",
   },
   alternates: {
-    canonical: "https://manthansingh.dev",
+    canonical: "https://manthan.vigneshreddy.tech",
   },
   category: "Portfolio",
   classification: "Personal Portfolio Website",

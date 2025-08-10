@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://manthansingh.dev/sitemap.xml
+Sitemap: https://manthan.vigneshreddy.tech/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

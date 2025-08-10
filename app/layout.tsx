@@ -6,7 +6,7 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://manthansingh.dev"),
+  metadataBase: new URL("https://manthan.vigneshreddy.tech"),
   title: {
     default: "Manthan Raj Singh - Data Science Student | IIT Madras | Mumbai",
     template: "%s | Manthan Raj Singh",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Python",
     "Student Developer",
   ],
-  authors: [{ name: "Manthan Raj Singh", url: "https://manthansingh.dev" }],
+  authors: [{ name: "Manthan Raj Singh", url: "https://manthan.vigneshreddy.tech" }],
   creator: "Manthan Raj Singh",
   publisher: "Manthan Raj Singh",
   formatDetection: {
@@ -45,8 +45,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Manthan Raj Singh",
-  url: "https://manthansingh.dev",
-  image: "https://manthansingh.dev/profile-image.jpg",
+  url: "https://manthan.vigneshreddy.tech",
+  image: "https://manthan.vigneshreddy.tech/profile-image.jpg",
   sameAs: [
     "https://github.com/manthansingh",
     "https://linkedin.com/in/manthan-singh-38b3ba187",
@@ -100,6 +100,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="canonical" href="https://manthan.vigneshreddy.tech" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <style>{`
 html {
